@@ -1,5 +1,8 @@
 export default a;
 
 function a() {
-  return 'this is a';
+  console.info(message);
+  return message;
 }
+
+const message = "this is module a";
