@@ -1,7 +1,7 @@
 export default a;
 
 function a() {
-  console.info(message);
+  console.info('loaded: ' + message);
   return message;
 }
 

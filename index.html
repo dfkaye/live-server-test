@@ -2,20 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="Content Security Policy" content="script-src 'unsafe-inline' https: 'nonce-Saik14t9sjq24' 'strict-dynamic' ">
+  <meta http-equiv="Content-Security-Policy"
+    content="style-src 'nonce-Saik14t9sjq24' https:; script-src 'unsafe-inline' https: 'nonce-Saik14t9sjq24' 'strict-dynamic';">
   <title>es6 live-server test</title>
+  <link rel='stylesheet' href='/index.css' nonce="Saik14t9sjq24">
+  <script async nonce="Saik14t9sjq24" src="/live-server-fix.js"></script>
 </head>
 <body>
+  <p>cmd line to start</p>
   <pre><code>
-    /c/Geek Squad Backup/Data Partition/yapstone/live-server-test
+    $ cd live-server-test
     $ live-server
   </code></pre>
+  <p>content-security-policy meta tag</p>
   <pre><code>
-  &lt;meta name="Content Security Policy" content="script-src 'unsafe-inline' https: 'nonce-Saik14t9sjq24' 'strict-dynamic' "&gt;
+    &lt;meta name="Content Security Policy" content="script-src 'unsafe-inline' https: 'nonce-Saik14t9sjq24' 'strict-dynamic' ">
+  </code></pre>
+  <p>script with textContent as data</p>
+  <pre><code>
+    &lt;script async type="module" nonce="Saik14t9sjq24" src="./index.js" data-live-server>
+    { "test": "test message" }
+    &lt;/script>
   </code></pre>
   <script async type="module" nonce="Saik14t9sjq24" src="./index.js" data-live-server>
-    { "test": "message's message" }
+    { "test": "test message" }
   </script>
+  <p>include a.js to show it runs before a.js imported into index.js</p>
+  <pre><code>
+    &lt;script async type="module" nonce="Saik14t9sjq24" src="./a.js">&lt;/script>
+  </code></pre>
   <script async type="module" nonce="Saik14t9sjq24" src="./a.js"></script>
+  <p>console should print:</p>
+  <pre><code>
+    Live reload enabled. &lt;/Guy Fieri>
+    loaded: this is module a
+    imported: this is module a
+    imported: this is module b
+    config: test message
+    dynamically added inline script
+  </code></pre>
 </body>
 </html>

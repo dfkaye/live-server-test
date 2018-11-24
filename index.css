@@ -1,0 +1,6 @@
+/* index.css */
+@import '/style.css';
+
+body {
+  background: lightblue;
+}

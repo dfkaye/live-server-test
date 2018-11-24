@@ -9,20 +9,26 @@ using live-server with content security policy and import-export module syntax.
 ## cd into local directory and start
   
     $ cd ../../live-server-test
-    $ live-server
+    $ live-server .
+    
+Or 
 
-## define strict but lax-fallback CSP meta tag in index.html
+    $ npm start
 
-    &lt;meta name="Content Security Policy" content="script-src 'unsafe-inline' https: 'nonce-Saik14t9sjq24' 'strict-dynamic' "&gt;
+## define strict-but-lax fallback CSP meta tag in index.html
+
+    `<meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline' https: 'nonce-Saik14t9sjq24' 'strict-dynamic' ">`
 
 ## include script
 
-    &ltscript async type=module nonce="Saik14t9sjq24" scr="/index.js">
+```
+    <script async type=module nonce="Saik14t9sjq24" scr="/index.js">
     {
       "test": "message's message"
     }
-    &lt;/script>
-    
+    </script>
+```
+
 ## script with imports
 
     import a from '/a.js';
@@ -42,4 +48,3 @@ using live-server with content security policy and import-export module syntax.
     const message = "this is module a";
     
 ## *et cetera*
-
